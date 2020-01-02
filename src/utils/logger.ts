@@ -1,20 +1,14 @@
 import { config } from './config';
 import { LoggerOptions, transports, createLogger } from "winston";
-
-require("winston-daily-rotate-file");
+import DailyRotateFile = require ('winston-daily-rotate-file');
 
 const defaultLevel = process.env.LOG_LEVEL;
-
-// We might want to do something on rotation?
-// rotateTransport.on("rotate", (oldFilename, newFilename) => {
-//     // do something fun
-// });
 
 const options: LoggerOptions = {
     exitOnError: false,
     level: defaultLevel,
     transports: [
-        new transports.DailyRotateFile({
+        new DailyRotateFile({
             filename: config.logging.default,
             datePattern: "YYYY-MM-DD-HH",
             zippedArchive: true,
@@ -22,7 +16,7 @@ const options: LoggerOptions = {
             maxFiles: "14d",
             level: "info", // info and below to rotate
         }),
-        new transports.DailyRotateFile({
+        new DailyRotateFile({
             filename: config.logging.error,
             datePattern: "YYYY-MM-DD-HH",
             zippedArchive: true,
@@ -30,7 +24,7 @@ const options: LoggerOptions = {
             maxFiles: "14d",
             level: "error", // error and below to rotate
         }),
-        new transports.DailyRotateFile({
+        new DailyRotateFile({
             filename: config.logging.silly,
             datePattern: "YYYY-MM-DD-HH",
             zippedArchive: true,
