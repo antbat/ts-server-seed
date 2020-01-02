@@ -1,0 +1,27 @@
+{
+    "port": 3000,
+    "logging": {
+        "default": "logs/default.log",
+        "error": "logs/error.log",
+        "silly": "logs/silly.log"
+    },
+    "mongoDB": {
+        "connectionString": "mongodb://localhost/core",
+        "collection": {
+            "word": "word",
+            "relation": "relation",
+            "dictionary": "dictionary"
+        }
+    },
+    "elasticSearch": {
+        "index": {
+            "word": "word",
+            "relation": "relation"
+        },
+        "options": {
+            "node": "http://localhost:9200",
+            "log": "debug",
+            "keepAlive": true
+        }
+    }
+}
