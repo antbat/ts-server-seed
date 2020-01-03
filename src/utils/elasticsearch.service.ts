@@ -1,8 +1,9 @@
 import { config } from "./config";
 import { client } from "../connections/elasticSearch.connection";
-import { logger } from "./logger";
+import { getLogger } from "./logger";
 import { Client } from '@elastic/elasticsearch'
 
+const logger = getLogger(module);
 
 export class ElasticsearchService {
     private client: Client;

@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
 import { config } from '../utils/config';
-import { logger } from '../utils/logger';
+import { getLogger } from '../utils/logger';
 
+const logger = getLogger(module);
 mongoose.Promise = Promise;
 
 if (process.env.MONGOOSE_DEBUG) {

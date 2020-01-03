@@ -1,10 +1,8 @@
 {
     "port": 3000,
     "logging": {
-        "elasticSearchLogIndex": "logs",
-        "default": "logs/default.log",
-        "error": "logs/error.log",
-        "silly": "logs/silly.log"
+        "default": "logs",
+        "error": "error-logs"
     },
     "mongoDB": {
         "connectionString": "mongodb://localhost/core",

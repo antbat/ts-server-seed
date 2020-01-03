@@ -6,10 +6,8 @@ import currentConfig from 'config'
 export interface Config {
     port: number;
     logging: {
-        elasticSearchLogIndex: string,
         default: string,
         error: string,
-        silly: string
     },
     mongoDB: {
         connectionString: string,
