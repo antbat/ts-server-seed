@@ -1,6 +1,8 @@
 import { config } from './config';
 import { LoggerOptions, transports, createLogger } from "winston";
+import { client } from '../connections/elasticSearch.connection';
 import DailyRotateFile = require ('winston-daily-rotate-file');
+import { ElasticsearchWinstonTransport } from "./ElasticsearchWinstonTransport";
 
 const defaultLevel = process.env.LOG_LEVEL;
 
@@ -8,6 +10,10 @@ const options: LoggerOptions = {
     exitOnError: false,
     level: defaultLevel,
     transports: [
+        new ElasticsearchWinstonTransport({
+            client,
+            index: config.logging.elasticSearchLogIndex
+        }),
         new DailyRotateFile({
             filename: config.logging.default,
             datePattern: "YYYY-MM-DD-HH",

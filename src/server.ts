@@ -1,18 +1,21 @@
 import { App } from './app';
-import { wordIndexCreate } from './connections/elasticSearch.connection';
+import { client } from './connections/elasticSearch.connection';
 import { RootController } from './domains/root.controller';
 import { logger } from './utils/logger';
 import { config } from './utils/config';
 import { mongooseConnection } from './connections/mongoDB.connection'
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import {ElasticsearchService} from "./utils/elasticsearch.service";
 
 
 
 ( async () => {
 
-    // database setup
-    await wordIndexCreate();
+    const elasticsearchService = new ElasticsearchService(client);
+    elasticsearchService.checkHealth();
+    await elasticsearchService.wordIndexCreate();
+
     await mongooseConnection;
 
     // express application init
@@ -27,7 +30,8 @@ import cors from 'cors';
     const app = new App(controllers, middleware, logger);
 
     // start
-    app.listen(config.port);
+    await app.listen(config.port);
+    logger.info(`server started listening port ${config.port}`)
 })();
 
 
