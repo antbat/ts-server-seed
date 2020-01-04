@@ -30,7 +30,7 @@ export class App {
             controller.registerRoutes(this.application)
         );
 
-        this.application.use( (error: HttpError, request: Request, response: Response, next: NextFunction) => {
+        this.application.use( (error: HttpError, request: Request, response: Response, _next: NextFunction) => {
             const status = error.status || 500;
             const message = error.message || 'Something went wrong';
             response
