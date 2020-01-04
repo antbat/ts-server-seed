@@ -12,15 +12,12 @@ export interface Config {
     mongoDB: {
         connectionString: string,
         collection: {
-            word: string,
-            relation: string
-            dictionary: string
+            user: string
         }
     },
     elasticSearch: {
         index: {
-            word: string,
-            relation: string
+            user: string
         },
         options: {
             node: string,
