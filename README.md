@@ -8,4 +8,5 @@ Implemented:
 - logger is winston with custom ElasticSearch transport (for error and default indexes) 
 - editor config
 - gitignore
-- ptocfile for heroku deploy
+- procfile for heroku deploy
+- ready for test and coverage analyzing (for intellij idea) 
