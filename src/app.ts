@@ -3,7 +3,7 @@ import { Application } from 'express';
 import { Logger } from 'winston'
 import { HttpError } from './utils/HttpError';
 import { IController } from './utils/Controllers';
-import { getLogger } from './utils/logger';
+import { getLogger } from './utils/logger/logger';
 import cors from "cors";
 import bodyParser from "body-parser";
 import { ElasticsearchService } from "./utils/elasticsearch.service";

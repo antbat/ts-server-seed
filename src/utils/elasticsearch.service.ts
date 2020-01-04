@@ -1,6 +1,6 @@
 import { config } from "./config";
 import { client } from "../connections/elasticSearch.connection";
-import { getLogger } from "./logger";
+import { getLogger } from "./logger/logger";
 import { Client } from '@elastic/elasticsearch'
 
 const logger = getLogger(module);

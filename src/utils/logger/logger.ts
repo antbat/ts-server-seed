@@ -1,6 +1,6 @@
-import { config } from './config';
+import { config } from '../config';
 import {LoggerOptions, transports, createLogger, Logger} from "winston";
-import { client } from '../connections/elasticSearch.connection';
+import { client } from '../../connections/elasticSearch.connection';
 import { ElasticsearchWinstonTransport } from "./ElasticsearchWinstonTransport";
 import * as path from "path";
 
