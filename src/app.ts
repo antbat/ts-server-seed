@@ -3,7 +3,15 @@ import { Application } from 'express';
 import { Logger } from 'winston'
 import { HttpError } from './utils/HttpError';
 import { IController } from './utils/Controllers';
+import { getLogger } from './utils/logger';
+import cors from "cors";
+import bodyParser from "body-parser";
+import { ElasticsearchService } from "./utils/elasticsearch.service";
+import { client } from "./connections/elasticSearch.connection";
+import { mongooseConnection } from "./connections/mongoDB.connection";
+import { RootController } from "./domains/root/root.controller";
 
+const logger = getLogger(module);
 
 export class App {
 
@@ -38,5 +46,24 @@ export class App {
             this.logger.info(`the application are listening on ${port}`);
         });
     }
+}
 
+export async function getApp(): Promise<App> {
+    const elasticsearchService = new ElasticsearchService(client);
+
+    await elasticsearchService.wordIndexCreate();
+    elasticsearchService.checkHealth();
+
+    await mongooseConnection;
+
+    // express application init
+    const controllers = [
+        new RootController()
+    ];
+    const middleware: any[] = [
+        cors(),
+        bodyParser.json({limit: '50mb'}),
+        bodyParser.urlencoded({extended: false})
+    ];
+    return new App(controllers, middleware, logger);
 }
