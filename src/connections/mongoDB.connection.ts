@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { config } from '../utils/config';
-import { getLogger } from '../utils/logger';
+import { getLogger } from '../utils/logger/logger';
 
 const logger = getLogger(module);
 mongoose.Promise = Promise;

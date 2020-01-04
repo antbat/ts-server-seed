@@ -1,11 +1,10 @@
 {
-    "port": 3000,
     "logging": {
         "default": "logs",
         "error": "error-logs"
     },
     "mongoDB": {
-        "connectionString": "mongodb://localhost/core",
+        "connectionString": "mongodb://localhost/test",
         "collection": {
             "user": "user"
         }

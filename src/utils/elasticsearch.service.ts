@@ -1,6 +1,6 @@
 import { config } from "./config";
 import { client } from "../connections/elasticSearch.connection";
-import { getLogger } from "./logger";
+import { getLogger } from "./logger/logger";
 import { Client } from '@elastic/elasticsearch'
 
 const logger = getLogger(module);
@@ -11,7 +11,7 @@ export class ElasticsearchService {
         this.client = client
     }
     async wordIndexCreate() {
-        const indexName = config.elasticSearch.index.word;
+        const indexName = config.elasticSearch.index.user;
         const isExist = await ElasticsearchService.isIndexExists(indexName);
         if (!isExist) {
             await client.indices.create({
@@ -66,7 +66,7 @@ const elasticIndexBody = {
 };
 const elasticIndexMapping = {
     properties: {
-        text: {
+        displayName: {
             type: "text",
             analyzer: "english",
             fields: {

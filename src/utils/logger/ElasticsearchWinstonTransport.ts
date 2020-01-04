@@ -35,11 +35,9 @@ export class ElasticsearchWinstonTransport extends Transport {
                     env: this.env
                 }
             };
-            this.client
-                .index(doc)
-                .catch( (err) =>
-                    console.error(err)
-                );
+            this.client.index(doc).catch( (err) =>
+                console.error(err)
+            );
         }
     }
 }

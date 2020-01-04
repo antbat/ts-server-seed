@@ -1,5 +1,5 @@
 import { Application, Request, Response, NextFunction } from 'express';
-import { Controllers, IController } from '../utils/Controllers';
+import { Controllers, IController } from '../../utils/Controllers';
 
 
 export class RootController extends Controllers implements IController {
