@@ -15,6 +15,6 @@ describe('Auth server', async () => {
     });
     it('should return response on call', async () => {
         const res = await chai.request(app).get('/');
-        res.status.should.be.eql(200);
+        res.status.should.have.status(200);
     })
 });
