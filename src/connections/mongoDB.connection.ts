@@ -17,13 +17,17 @@ db.on('disconnected', () => logger.info('Mongoose was disconnected'));
 
 process.on('SIGINT', () => {
     db.close().then(() => {
-        logger.info('Mongoose connection is disconnected due to application termination');
+        logger.info(
+            'Mongoose connection is disconnected due to application termination'
+        );
         process.exit(0);
     });
 });
 
-export const mongooseConnection = mongoose.connect(config.mongoDB.connectionString);
+export const mongooseConnection = mongoose.connect(
+    config.mongoDB.connectionString,
+    { useNewUrlParser: true, useUnifiedTopology: true }
+);
 export function isObjectId(str: string): boolean {
     return mongoose.Types.ObjectId.isValid(str);
 }
-

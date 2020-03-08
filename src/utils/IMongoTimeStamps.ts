@@ -1,5 +1,4 @@
 export interface IMongoTimeStamps {
-    Id?: string;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt?: Date;
+    updatedAt?: Date;
 }
